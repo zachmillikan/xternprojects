@@ -1,1 +1,30 @@
+/*body {
+  background-color: #e6e6e6;
+/*}*/
 
+/*.row {
+  background-color: white;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 50px;
+  width: 30%;
+  padding: 10px;
+}
+
+li {
+  list-style: none;
+  text-align: center;
+  padding: 10px;
+  background-color: white;
+  width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}*/
+
+#studentForm > div {
+  padding: 0px;
+}

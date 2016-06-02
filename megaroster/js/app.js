@@ -1,31 +1,61 @@
 $(document).foundation();
 
-var app = {
-
+var megaRoster = {
   init: function() {
-    var myForm = document.querySelector('form');
-    myForm.onsubmit = app.addValuesToDetails;
+    this.setupEventListeners();
+    this.count = 0;
   },
 
-  buildList: function (firstName) {
-    var li = document.createElement('li');
-    li.innerHTML = firstName + '<a href="#" onclick="deleteItem(item)">Delete</a>' + '<a href="#">Promote</a>';
-
-    return li;
+  setupEventListeners: function() {
+    document.querySelector('form#studentForm').onsubmit =
+    this.addStudent.bind(this);
   },
 
-  deleteItem: function(item){
-
-  },
-
-  addValuesToDetails: function(ev) {
+  addStudent: function(ev) {
     ev.preventDefault();
-    var details = document.querySelector('div.details');
-    var firstName = this.firstName.value;
+    var f = ev.currentTarget;
+    var studentName = f.studentName.value;
+    var listItem = this.buildListItem(studentName);
+    var studentList = document.querySelector('#studentList');
+    studentList.appendChild(listItem);
+    f.reset();
+    this.count += 1;
 
-  details.appendChild(app.buildList(firstName));
+    f.studentName.focus();
+  },
 
-  }
+  buildListItem: function(studentName) {
+    var listItem = document.createElement('li');
+    listItem.innerText = studentName;
+    return listItem;
+  },
 };
 
-app.init();
+megaRoster.init();
+
+
+// var app = {
+//
+//   init: function() {
+//     var myForm = document.querySelector('form');
+//     myForm.onsubmit = app.addValuesToDetails;
+//   },
+//
+//   buildList: function (firstName) {
+//     var li = document.createElement('li');
+//     li.innerHTML = firstName + '<a href="#" onclick="deleteItem(item)">Delete</a>' + '<a href="#">Promote</a>';
+//
+//     return li;
+//   },
+//
+//   addValuesToDetails: function(ev) {
+//     ev.preventDefault();
+//     var details = document.querySelector('div.details');
+//     var firstName = this.firstName.value;
+//
+//   details.appendChild(app.buildList(firstName));
+//
+//   }
+// };
+//
+// app.init();
