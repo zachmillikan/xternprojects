@@ -17,11 +17,18 @@ var megaRoster = {
     var studentName = f.studentName.value;
     var listItem = this.buildListItem(studentName);
     var studentList = document.querySelector('#studentList');
-    studentList.appendChild(listItem);
+
+    // studentList.appendChi(listItem);
+    this.prependChild(studentList, listItem);
+
     f.reset();
     this.count += 1;
 
     f.studentName.focus();
+  },
+
+  prependChild: function(parent, child) {
+    parent.insertBefore(child, parent.firstChild)
   },
 
   buildListItem: function(studentName) {
@@ -38,9 +45,16 @@ var megaRoster = {
           listItem.style.border = '2px CornflowerBlue dashed';
         }
     });
+    var demoteLink = this.buildLink({
+        text: 'demote',
+        handler: function() {
+          listItem.style.border = '0px';
+        }
+    })
     listItem.innerText = studentName;
     listItem.appendChild(removeLink);
     listItem.appendChild(promoteLink);
+    listItem.appendChild(demoteLink);
 
     return listItem;
   },
