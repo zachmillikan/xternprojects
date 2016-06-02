@@ -34,7 +34,9 @@ var megaRoster = {
     });
     var promoteLink = this.buildLink({
         text: 'promote',
-        handler: function() { alert('Promoted');}
+        handler: function() {
+          listItem.style.border = '2px CornflowerBlue dashed';
+        }
     });
     listItem.innerText = studentName;
     listItem.appendChild(removeLink);
