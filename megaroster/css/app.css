@@ -28,3 +28,7 @@ li {
 #studentForm > div {
   padding: 0px;
 }
+
+#studentList a {
+  margin-left: 1em;
+}
