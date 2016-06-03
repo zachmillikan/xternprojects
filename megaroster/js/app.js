@@ -58,7 +58,6 @@ var megaRoster = {
         text: 'promote',
         handler: function() {
           this.promote(listItem);
-
           // if (i === false)
           // {
           //   var temp = document.querySelector('ul');
@@ -80,9 +79,10 @@ var megaRoster = {
     var moveUpLink = this.buildLink({
         text: 'move up',
         handler: function() {
-          var temp = document.querySelector('ul');
-          temp.insertBefore(listItem, listItem.previousSibling);
-        }
+          this.moveUp(listItem);
+          // var temp = document.querySelector('ul');
+          // temp.insertBefore(listItem, listItem.previousSibling);
+        }.bind(this)
     });
     var moveDownLink = this.buildLink({
         text: 'move down',
@@ -116,6 +116,15 @@ var megaRoster = {
 
   promote: function(listItem) {
     this.prependChild(this.studentList, listItem);
+  },
+
+  moveUp: function(listItem) {
+    var previousItem = listItem.previousElementSibling;
+    this.studentList.insertBefore(listItem, previousItem);
+  },
+
+  moveDown: function(listItem) {
+
   },
 
   buildEdit: function(){
