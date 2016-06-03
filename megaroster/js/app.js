@@ -4,6 +4,7 @@ var megaRoster = {
   init: function() {
     this.setupEventListeners();
     this.count = 0;
+
   },
 
   setupEventListeners: function() {
@@ -18,9 +19,10 @@ var megaRoster = {
     var listItem = this.buildListItem(studentName);
     var studentList = document.querySelector('#studentList');
 
-    // studentList.appendChi(listItem);
+    // studentList.appendChild(listItem);
     this.prependChild(studentList, listItem);
 
+    // Reset empties the input text field so that it is empty
     f.reset();
     this.count += 1;
 
@@ -45,17 +47,33 @@ var megaRoster = {
           listItem.style.border = '2px CornflowerBlue dashed';
         }
     });
-    var demoteLink = this.buildLink({
-        text: 'demote',
+    var moveUpLink = this.buildLink({
+        text: 'move up',
         handler: function() {
-          listItem.style.border = '0px';
+          var temp = document.querySelector('ul');
+          temp.insertBefore(listItem, listItem.previousSibling);
+        }
+    });
+    var moveDownLink = this.buildLink({
+        text: 'move down',
+        handler: function moveItemDown() {
+          var temp = document.querySelector('ul');
+          temp.insertBefore(listItem.nextSibling, listItem);
+        }
+    });
+    var moveToTopLink = this.buildLink({
+        text:'move to top',
+        handler: function() {
+          var temp = document.querySelector('ul');
+          megaRoster.prependChild(temp, listItem);
         }
     })
     listItem.innerText = studentName;
     listItem.appendChild(removeLink);
     listItem.appendChild(promoteLink);
-    listItem.appendChild(demoteLink);
-
+    listItem.appendChild(moveDownLink);
+    listItem.appendChild(moveUpLink);
+    listItem.appendChild(moveToTopLink);
     return listItem;
   },
 
@@ -66,6 +84,7 @@ var megaRoster = {
     link.onclick = options.handler;
     return link;
   },
+
 };
 
 megaRoster.init();
