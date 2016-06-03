@@ -36,7 +36,10 @@ var megaRoster = {
   buildListItem: function(studentName) {
 
     var listItem = document.createElement('li');
-    listItem.innerText = studentName;
+    var span = document.createElement('span');
+    span.innerText = studentName;
+    span.className = 'studentName';
+    listItem.appendChild(span);
     this.appendLinks(listItem);
 
     return listItem;
@@ -94,23 +97,18 @@ var megaRoster = {
           // temp.insertBefore(listItem.nextSibling, listItem);
         }.bind(this)
     });
-    // var moveToTopLink = this.buildLink({
-    //     text:'top',
-    //     handler: function() {
-    //       var temp = document.querySelector('ul');
-    //       megaRoster.prependChild(temp, listItem);
-    //     }
-    // });
 
     span.appendChild(this.buildLink({
       text: 'edit',
-
+      className: 'edit',
+      handler: function() {
+        this.toggleEditable(listItem.querySelector('span.studentName'));
+      }.bind(this)
     }));
     span.appendChild(removeLink);
     span.appendChild(promoteLink);
     span.appendChild(moveDownLink);
     span.appendChild(moveUpLink);
-    // span.appendChild(moveToTopLink);
     listItem.appendChild(span);
   },
 
@@ -121,6 +119,19 @@ var megaRoster = {
     link.onclick = options.handler;
     link.className += (options.className || '');
     return link;
+  },
+
+  toggleEditable: function(el) {
+    var  toggleElement = el.parentElement.querySelector('a.edit');
+    if (el.contentEditable === 'true') {
+      el.contentEditable = 'false';
+      toggleElement.innerHTML = 'edit'
+    }
+    else {
+    el.contentEditable = 'true';
+    el.focus();
+    toggleElement.innerHTML = 'save'
+    }
   },
 
   promote: function(listItem) {

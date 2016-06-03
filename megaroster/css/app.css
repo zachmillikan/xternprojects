@@ -13,7 +13,16 @@
   cursor: not-allowed;
 }
 
+span.studentName {
+  display: inline-block;
+  padding: 1px;
+  width: 15em;
+}
 
+span[contenteditable=true] {
+  border: 1px solid #ccc;
+  padding: 0px;
+}
 
 span.actions {
   display: inline-block;
