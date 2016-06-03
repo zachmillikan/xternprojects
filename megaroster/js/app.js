@@ -47,6 +47,12 @@ var megaRoster = {
           listItem.style.border = '2px CornflowerBlue dashed';
         }
     });
+    var demoteLink = this.buildLink({
+        text: 'demote',
+        handler: function () {
+          listItem.style.border = 'none';
+        }
+    });
     var moveUpLink = this.buildLink({
         text: 'move up',
         handler: function() {
@@ -71,6 +77,7 @@ var megaRoster = {
     listItem.innerText = studentName;
     listItem.appendChild(removeLink);
     listItem.appendChild(promoteLink);
+    listItem.appendChild(demoteLink);
     listItem.appendChild(moveDownLink);
     listItem.appendChild(moveUpLink);
     listItem.appendChild(moveToTopLink);
