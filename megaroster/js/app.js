@@ -5,6 +5,7 @@ var megaRoster = {
     this.studentList = document.querySelector(listSelector);
     this.setupEventListeners();
     this.count = 0;
+    // this.roster = [];
   },
 
   setupEventListeners: function() {
@@ -18,15 +19,15 @@ var megaRoster = {
     var studentName = f.studentName.value;
     var listItem = this.buildListItem(studentName);
     var studentList = document.querySelector('#studentList');
-
-
     this.prependChild(this.studentList, listItem);
-
-    // Reset empties the input text field so that it is empty
+    // Reset empties the input content field so that it is empty
     f.reset();
     this.count += 1;
-
     f.studentName.focus();
+    // this.roster.push({
+    //   studentName: "Jordan"
+    //   id: 4
+    // });
   },
 
   prependChild: function(parent, child) {
@@ -34,7 +35,6 @@ var megaRoster = {
   },
 
   buildListItem: function(studentName) {
-
     var listItem = document.createElement('li');
     var span = document.createElement('span');
     span.innerText = studentName;
@@ -51,14 +51,15 @@ var megaRoster = {
     span.className += 'actions';
 
     var removeLink = this.buildLink({
-        text: 'remove',
+        content: 'remove',
+        // className: 'alert button',
         handler: function() {
           listItem.remove();
         }
     });
 
     var promoteLink = this.buildLink({
-        text: 'promote',
+        content: 'promote',
         handler: function() {
           this.promote(listItem);
           // if (i === false)
@@ -75,12 +76,12 @@ var megaRoster = {
           //   listItem.style.border = 'none';
           //   listItem.style.background = 'white';
           //   i = false;
-          //   text: 'promote';
+          //   content: 'promote';
           // }
         }.bind(this)
     });
     var moveUpLink = this.buildLink({
-        text: 'up',
+        content: '<i class="fa fa-arrow-circle-up"></i>',
         className: 'moveUp',
         handler: function() {
           this.moveUp(listItem);
@@ -89,7 +90,7 @@ var megaRoster = {
         }.bind(this)
     });
     var moveDownLink = this.buildLink({
-        text: 'down',
+        content: 'down',
         className: 'moveDown',
         handler: function moveItemDown() {
           this.moveDown(listItem);
@@ -99,7 +100,7 @@ var megaRoster = {
     });
 
     span.appendChild(this.buildLink({
-      text: 'edit',
+      content: 'edit',
       className: 'edit',
       handler: function() {
         this.toggleEditable(listItem.querySelector('span.studentName'));
@@ -115,7 +116,7 @@ var megaRoster = {
   buildLink: function(options) {
     var link = document.createElement('a');
     link.href="#";
-    link.innerText = options.text;
+    link.innerHTML = options.content;
     link.onclick = options.handler;
     link.className += (options.className || '');
     return link;
