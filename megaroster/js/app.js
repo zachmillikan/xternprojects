@@ -41,17 +41,24 @@ var megaRoster = {
           listItem.remove();
         }
     });
+    // var demoteLink = this.buildLink({
+    //   text: 'demote'
+    // });
     var promoteLink = this.buildLink({
         text: 'promote',
         handler: function() {
           if (i === false)
           {
             listItem.style.border = '2px CornflowerBlue dashed';
+            listItem.style.background = 'CornflowerBlue';
             i = true;
+            text: 'demote';
           }
           else if (i === true)
           {
             listItem.style.border = 'none';
+            i = false;
+            text: 'promote';
           }
         }
     });
