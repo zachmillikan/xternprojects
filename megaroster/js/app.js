@@ -2,6 +2,7 @@ $(document).foundation();
 
 var megaRoster = {
   init: function() {
+    this.studentList = document.querySelector('#studentList');
     this.setupEventListeners();
     this.count = 0;
   },
@@ -19,7 +20,7 @@ var megaRoster = {
     var studentList = document.querySelector('#studentList');
 
 
-    this.prependChild(studentList, listItem);
+    this.prependChild(this.studentList, listItem);
 
     // Reset empties the input text field so that it is empty
     f.reset();
@@ -42,9 +43,9 @@ var megaRoster = {
   },
 
   appendLinks: function(listItem) {
+    var i = false;
     var span = document.createElement('span');
     span.className += 'actions';
-    var i = false;
     var removeLink = this.buildLink({
         text: 'remove',
         handler: function() {
