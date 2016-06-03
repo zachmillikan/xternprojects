@@ -18,7 +18,7 @@ var megaRoster = {
     var listItem = this.buildListItem(studentName);
     var studentList = document.querySelector('#studentList');
 
-    // studentList.appendChild(listItem);
+
     this.prependChild(studentList, listItem);
 
     // Reset empties the input text field so that it is empty
@@ -41,21 +41,21 @@ var megaRoster = {
           listItem.remove();
         }
     });
-    // var demoteLink = this.buildLink({
-    //   text: 'demote'
-    // });
+
     var promoteLink = this.buildLink({
         text: 'promote',
         handler: function() {
           if (i === false)
           {
+            var temp = document.querySelector('ul');
+            megaRoster.prependChild(temp, listItem);
             listItem.style.border = '2px CornflowerBlue dashed';
             listItem.style.background = '#e6e6e6';
             i = true;
-            text: 'demote';
           }
           else if (i === true)
           {
+            studentList.appendChild(listItem);
             listItem.style.border = 'none';
             listItem.style.background = 'white';
             i = false;
