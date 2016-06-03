@@ -50,13 +50,14 @@ var megaRoster = {
           if (i === false)
           {
             listItem.style.border = '2px CornflowerBlue dashed';
-            listItem.style.background = 'CornflowerBlue';
+            listItem.style.background = '#e6e6e6';
             i = true;
             text: 'demote';
           }
           else if (i === true)
           {
             listItem.style.border = 'none';
+            listItem.style.background = 'white';
             i = false;
             text: 'promote';
           }
