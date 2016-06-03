@@ -92,18 +92,23 @@ var megaRoster = {
           // temp.insertBefore(listItem.nextSibling, listItem);
         }.bind(this)
     });
-    var moveToTopLink = this.buildLink({
-        text:'top',
-        handler: function() {
-          var temp = document.querySelector('ul');
-          megaRoster.prependChild(temp, listItem);
-        }
-    });
+    // var moveToTopLink = this.buildLink({
+    //     text:'top',
+    //     handler: function() {
+    //       var temp = document.querySelector('ul');
+    //       megaRoster.prependChild(temp, listItem);
+    //     }
+    // });
+
+    span.appendChild(this.buildLink({
+      text: 'edit',
+
+    }));
     span.appendChild(removeLink);
     span.appendChild(promoteLink);
     span.appendChild(moveDownLink);
     span.appendChild(moveUpLink);
-    span.appendChild(moveToTopLink);
+    // span.appendChild(moveToTopLink);
     listItem.appendChild(span);
   },
 
@@ -120,12 +125,16 @@ var megaRoster = {
   },
 
   moveUp: function(listItem) {
+    if (listItem !== this.studentList.firstElementChild) {
     var previousItem = listItem.previousElementSibling;
     this.studentList.insertBefore(listItem, previousItem);
+    }
   },
 
   moveDown: function(listItem) {
+    if (listItem !== this.studentList.lastElementChild){
     this.moveUp(listItem.nextElementSibling);
+    }
   },
 
   buildEdit: function(){
