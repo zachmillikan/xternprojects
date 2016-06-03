@@ -33,8 +33,18 @@ var megaRoster = {
   },
 
   buildListItem: function(studentName) {
-    var i = false;
+
     var listItem = document.createElement('li');
+    listItem.innerText = studentName;
+    this.appendLinks(listItem);
+
+    return listItem;
+  },
+
+  appendLinks: function(listItem) {
+    var span = document.createElement('span');
+    span.className += 'actions';
+    var i = false;
     var removeLink = this.buildLink({
         text: 'remove',
         handler: function() {
@@ -83,15 +93,14 @@ var megaRoster = {
           var temp = document.querySelector('ul');
           megaRoster.prependChild(temp, listItem);
         }
-    })
-    listItem.innerText = studentName;
+    });
 
-    listItem.appendChild(moveToTopLink);
-    listItem.appendChild(moveUpLink);
-    listItem.appendChild(moveDownLink);
-    listItem.appendChild(promoteLink);
-    listItem.appendChild(removeLink);
-    return listItem;
+    span.appendChild(moveToTopLink);
+    span.appendChild(moveUpLink);
+    span.appendChild(moveDownLink);
+    span.appendChild(promoteLink);
+    span.appendChild(removeLink);
+    listItem.appendChild(span);
   },
 
   buildLink: function(options) {
