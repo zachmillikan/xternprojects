@@ -78,6 +78,7 @@ var megaRoster = {
     });
     var moveUpLink = this.buildLink({
         text: 'up',
+        className: 'moveUp',
         handler: function() {
           this.moveUp(listItem);
           // var temp = document.querySelector('ul');
@@ -86,6 +87,7 @@ var megaRoster = {
     });
     var moveDownLink = this.buildLink({
         text: 'down',
+        className: 'moveDown',
         handler: function moveItemDown() {
           this.moveDown(listItem);
           // var temp = document.querySelector('ul');
@@ -117,6 +119,7 @@ var megaRoster = {
     link.href="#";
     link.innerText = options.text;
     link.onclick = options.handler;
+    link.className += (options.className || '');
     return link;
   },
 

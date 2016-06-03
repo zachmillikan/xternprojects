@@ -6,6 +6,15 @@
   margin-left: 1em;
 }
 
+#studentList li:last-child a.moveDown,
+#studentList li:first-child a.moveUp {
+  color: #ddd;
+  /*pointer-events: none;*/
+  cursor: not-allowed;
+}
+
+
+
 span.actions {
   display: inline-block;
   float: right;
