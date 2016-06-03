@@ -77,7 +77,7 @@ var megaRoster = {
         }.bind(this)
     });
     var moveUpLink = this.buildLink({
-        text: 'move up',
+        text: 'up',
         handler: function() {
           this.moveUp(listItem);
           // var temp = document.querySelector('ul');
@@ -85,14 +85,15 @@ var megaRoster = {
         }.bind(this)
     });
     var moveDownLink = this.buildLink({
-        text: 'move down',
+        text: 'down',
         handler: function moveItemDown() {
-          var temp = document.querySelector('ul');
-          temp.insertBefore(listItem.nextSibling, listItem);
-        }
+          this.moveDown(listItem);
+          // var temp = document.querySelector('ul');
+          // temp.insertBefore(listItem.nextSibling, listItem);
+        }.bind(this)
     });
     var moveToTopLink = this.buildLink({
-        text:'move to top',
+        text:'top',
         handler: function() {
           var temp = document.querySelector('ul');
           megaRoster.prependChild(temp, listItem);
@@ -124,7 +125,7 @@ var megaRoster = {
   },
 
   moveDown: function(listItem) {
-
+    this.moveUp(listItem.nextElementSibling);
   },
 
   buildEdit: function(){
