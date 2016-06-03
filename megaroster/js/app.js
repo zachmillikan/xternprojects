@@ -4,7 +4,6 @@ var megaRoster = {
   init: function() {
     this.setupEventListeners();
     this.count = 0;
-
   },
 
   setupEventListeners: function() {
@@ -34,6 +33,7 @@ var megaRoster = {
   },
 
   buildListItem: function(studentName) {
+    var i = false;
     var listItem = document.createElement('li');
     var removeLink = this.buildLink({
         text: 'remove',
@@ -44,13 +44,15 @@ var megaRoster = {
     var promoteLink = this.buildLink({
         text: 'promote',
         handler: function() {
-          listItem.style.border = '2px CornflowerBlue dashed';
-        }
-    });
-    var demoteLink = this.buildLink({
-        text: 'demote',
-        handler: function () {
-          listItem.style.border = 'none';
+          if (i === false)
+          {
+            listItem.style.border = '2px CornflowerBlue dashed';
+            i = true;
+          }
+          else if (i === true)
+          {
+            listItem.style.border = 'none';
+          }
         }
     });
     var moveUpLink = this.buildLink({
@@ -75,12 +77,12 @@ var megaRoster = {
         }
     })
     listItem.innerText = studentName;
-    listItem.appendChild(removeLink);
-    listItem.appendChild(promoteLink);
-    listItem.appendChild(demoteLink);
-    listItem.appendChild(moveDownLink);
-    listItem.appendChild(moveUpLink);
+
     listItem.appendChild(moveToTopLink);
+    listItem.appendChild(moveUpLink);
+    listItem.appendChild(moveDownLink);
+    listItem.appendChild(promoteLink);
+    listItem.appendChild(removeLink);
     return listItem;
   },
 
@@ -92,6 +94,9 @@ var megaRoster = {
     return link;
   },
 
+  buildEdit: function(){
+    var link = document
+  },
 };
 
 megaRoster.init();
