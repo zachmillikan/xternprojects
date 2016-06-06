@@ -1,12 +1,10 @@
 $(document).foundation();
 
 var megaRoster = {
-  init: function(listSelector) {
-    console.log(JSON.parse(localStorage.getItem( 'storedList')));
+    init: function(listSelector) {
     this.studentList = document.querySelector(listSelector);
     this.setupEventListeners();
     this.count = 0;
-    // this.roster = [];
   },
 
   setupEventListeners: function() {
@@ -23,12 +21,15 @@ var megaRoster = {
     this.prependChild(this.studentList, listItem);
     // Reset empties the input content field so that it is empty
     f.reset();
-    this.count += 1;
+    debugger;
+    megaRoster.count++;
+    localStorage.setItem(megaRoster.count, studentName);
+    console.log(localStorage);
     f.studentName.focus();
     // this.roster.push({
     //   studentName: "Jordan"
     //   id: 4
-    // });
+    // })
   },
 
   prependChild: function(parent, child) {
@@ -43,11 +44,6 @@ var megaRoster = {
     span.className = 'studentName';
     listItem.appendChild(span);
     this.appendLinks(listItem);
-    console.log(storedList);
-    
-    storedList.push(listItem);
-    localStorage.setItem('storedList', JSON.stringify(listItem));
-    console.log(storedList);
     return listItem;
   },
 
@@ -143,10 +139,11 @@ var megaRoster = {
   promote: function(listItem) {
     var i = false;
     if (i === false){
-    this.prependChild(this.studentList, listItem);
-    toggleElement.innerHTML = '<i class="fa fa-thumbs-down"></i>'
-    i = true;
+      this.prependChild(this.studentList, listItem);
+      toggleElement.innerHTML = '<i class="fa fa-thumbs-down"></i>'
+      i = true;
     }
+
   },
 
   moveUp: function(listItem) {
@@ -165,6 +162,9 @@ var megaRoster = {
   buildEdit: function(){
     var link = document
   },
+
+
+  }
 };
 
 megaRoster.init('#studentList');
