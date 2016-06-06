@@ -1,9 +1,50 @@
+footer {
+  text-align: center;
+  position: absolute, bottom;
+}
+
+@font-face {
+    font-family: oswald;
+    src: url(https://fonts.googleapis.com/css?family=Oswald);
+}
+
+@font-face {
+    font-family: fatFace;
+    src: url(https://fonts.googleapis.com/css?family=Abril+Fatface);
+}
+
+h1 {
+    font-family: fatFace;
+    text-align:center;
+}
+
+div {
+    font-family: oswald;
+}
+
 #studentForm > div {
   padding: 0px;
 }
 
 #studentList a {
-  margin-left: 1em;
+  margin-left: 1.5em;
+}
+
+#studentList li {
+  background-color: #ccdcf8;
+  margin: .35em;
+  padding-left: 2em;
+  padding-right: 2em;
+  color: #323232;
+}
+
+#studentList li:nth-child(even) {
+  background-color: #d3d3d3;
+  color:#323232;
+}
+
+i {
+  color:white;
 }
 
 #studentList li:last-child a.moveDown,

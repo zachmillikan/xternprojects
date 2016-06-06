@@ -2,6 +2,7 @@ $(document).foundation();
 
 var megaRoster = {
   init: function(listSelector) {
+    console.log(JSON.parse(localStorage.getItem( 'storedList')));
     this.studentList = document.querySelector(listSelector);
     this.setupEventListeners();
     this.count = 0;
@@ -35,23 +36,27 @@ var megaRoster = {
   },
 
   buildListItem: function(studentName) {
+    var storedList = {};
     var listItem = document.createElement('li');
     var span = document.createElement('span');
     span.innerText = studentName;
     span.className = 'studentName';
     listItem.appendChild(span);
     this.appendLinks(listItem);
-
+    console.log(storedList);
+    
+    storedList.push(listItem);
+    localStorage.setItem('storedList', JSON.stringify(listItem));
+    console.log(storedList);
     return listItem;
   },
 
   appendLinks: function(listItem) {
-    var i = false;
     var span = document.createElement('span');
     span.className += 'actions';
 
     var removeLink = this.buildLink({
-        content: 'remove',
+        content: '<i class="fa fa-times"></i>',
         // className: 'alert button',
         handler: function() {
           listItem.remove();
@@ -59,7 +64,7 @@ var megaRoster = {
     });
 
     var promoteLink = this.buildLink({
-        content: 'promote',
+        content: '<i class="fa fa-thumbs-up"></i>',
         handler: function() {
           this.promote(listItem);
           // if (i === false)
@@ -90,7 +95,7 @@ var megaRoster = {
         }.bind(this)
     });
     var moveDownLink = this.buildLink({
-        content: 'down',
+        content: '<i class="fa fa-arrow-circle-down"></i>',
         className: 'moveDown',
         handler: function moveItemDown() {
           this.moveDown(listItem);
@@ -100,7 +105,7 @@ var megaRoster = {
     });
 
     span.appendChild(this.buildLink({
-      content: 'edit',
+      content: '<i class="fa fa-pencil"></i>',
       className: 'edit',
       handler: function() {
         this.toggleEditable(listItem.querySelector('span.studentName'));
@@ -126,17 +131,22 @@ var megaRoster = {
     var  toggleElement = el.parentElement.querySelector('a.edit');
     if (el.contentEditable === 'true') {
       el.contentEditable = 'false';
-      toggleElement.innerHTML = 'edit'
+      toggleElement.innerHTML = '<i class="fa fa-pencil"></i>'
     }
     else {
     el.contentEditable = 'true';
     el.focus();
-    toggleElement.innerHTML = 'save'
+    toggleElement.innerHTML = '<i class="fa fa-check-circle"></i>'
     }
   },
 
   promote: function(listItem) {
+    var i = false;
+    if (i === false){
     this.prependChild(this.studentList, listItem);
+    toggleElement.innerHTML = '<i class="fa fa-thumbs-down"></i>'
+    i = true;
+    }
   },
 
   moveUp: function(listItem) {
